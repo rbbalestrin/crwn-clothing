@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FormInput from "../form-input/form-input.component";
 import {
   createUserDocumentFromAuth,
@@ -7,6 +7,9 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import "./sign-in-form.styles.scss";
 import Button from "../button/button.component";
+import {UserContext} from "../../context/user.context";
+
+
 
 const defaultFormFields = {
   email: "",
@@ -16,10 +19,12 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields); // desestrutrutura o defaultFormFields para poder ser utilizado individualmente
   const { email, password } = formFields;
 
+  const { setCurrentUser } = useContext(UserContext);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await signInAuthWithEmailAndPassword(email, password);
+      const user = await signInAuthWithEmailAndPassword(email, password);
       setFormFields(defaultFormFields);
     } catch (error) {
       switch (error.code) {
