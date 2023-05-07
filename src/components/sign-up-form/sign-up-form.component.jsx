@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import {
   createUserDocumentFromAuth,
@@ -6,7 +6,6 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import "./sign-up-form.styles.scss";
 import Button from "../button/button.component";
-import { UserContext } from "../../context/user.context";
 
 const defaultFormFields = {
   displayName: "",
@@ -18,7 +17,6 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields); // desestrutrutura o defaultFormFields para poder ser utilizado individualmente
   const { displayName, email, password, confirmPassword } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,7 +29,6 @@ const SignUpForm = () => {
         email,
         password
       );
-      setCurrentUser(user);
       await createUserDocumentFromAuth(user, { displayName });
       // Limpa o formulário após a criação do usuário
       setFormFields(defaultFormFields);
