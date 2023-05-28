@@ -15,7 +15,6 @@ This is a full-featured e-commerce shop built with React, which includes a varie
 • Jest
 • Enzyme
 • Styled-Components
-• ES6/ES7/ES8/ES9/ES10/ES11
 
 I learned how to integrate these technologies and use them effectively to create a seamless user experience for customers. I also learned how to build reactive, performant, large-scale applications like a senior developer and make good architecture decisions when leading a team of developers.
 Technologies Used
